@@ -2,9 +2,9 @@
   "name": "gitbtn",
   "displayName": "gitbtn",
   "description": "quick open git repository by button",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "engines": {
-    "vscode": "^1.71.0"
+    "vscode": "^1.78.0"
   },
   "categories": [
     "Other"
@@ -35,6 +35,11 @@
     "pretest": "pnpm run lint",
     "test": "node ./test/runTest.js"
   },
+  "publisher": "larry",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MrYZhou/gitbtn.git"
+  },
   "devDependencies": {
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.1",
@@ -47,7 +52,5 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "octicons": "^8.5.0",
-    "simple-git": "^3.18.0"
   }
 }
