@@ -1,7 +1,6 @@
 // const simpleGit = require('simple-git');
 const vscode = require('vscode');
-const { execSync } = require('child_process');
-const { dirname } = require('path');
+const simpleGit = require('simple-git');
 
 /**
  * use ThemeIcon
@@ -31,19 +30,19 @@ function activate(context) {
 			vscode.window.showErrorMessage('No file is opened in the editor!');
 			return;
 		}
-		function getGitRepositoryUrl(filePath) {
+
+		const getGitRepositoryUrl = async (filePath) => {
 			try {
-				// 执行 "git remote get-url origin" 命令获取 Git 仓库的 URL
-				const gitRepoUrl = execSync(`git remote get-url origin`, {
-					cwd: dirname(filePath),
-					encoding: 'utf-8',
-				}).trim();
-				return gitRepoUrl;
+					// 获取 Git 仓库的远程 URL
+					const git = simpleGit(dirname(filePath));
+					const remotes = await git.getRemotes(true);
+					const gitRepoUrl = remotes.filter(remote => remote.name === 'origin')[0].refs.fetch;
+					return gitRepoUrl;
 			} catch (error) {
-				console.error(error);
-				return null;
+					console.error(error);
+					return null;
 			}
-		}
+	}
 
 		const gitRepoUrl = getGitRepositoryUrl(filePath);
 
