@@ -21,7 +21,6 @@ function activate(context) {
   });
 
 	let openRepository = vscode.commands.registerCommand('gitbtn.openRepository', async function () {
-		// 获取当前文件路径和行号
 		const editor = vscode.window.activeTextEditor;
 		const filePath = editor.document.uri.fsPath;
 		const lineNumber = editor.selection.active.line + 1;
@@ -33,7 +32,6 @@ function activate(context) {
 		
 		const getGitRepositoryUrl = async (filePath) => {
 			try {
-				// 获取 Git 仓库的远程 URL
 				const git = simpleGit(path.dirname(filePath));
 				const remotes = await git.getRemotes(true);
 				const gitRepoUrl = remotes.filter(remote => remote.name === 'origin')[0].refs.fetch;
@@ -45,8 +43,7 @@ function activate(context) {
 	}
 
 		const gitRepoUrl = await getGitRepositoryUrl(filePath);
-
-		// 打开外部 URI
+		
 		const externalUri = await vscode.env.asExternalUri(vscode.Uri.parse(gitRepoUrl));
 		vscode.env.openExternal(externalUri);
 
