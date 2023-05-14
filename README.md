@@ -2,4 +2,4 @@
 
 **just click the button!**
 
-![guide](./static/1.png)
+![guide](https://github.com/MrYZhou/gitbtn/raw/main/static/1.png)
