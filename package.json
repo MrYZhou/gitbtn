@@ -2,7 +2,7 @@
   "name": "gitjump",
   "displayName": "GitJump",
   "description": "quick open git repository by button",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "engines": {
     "vscode": "^1.66.6"
   },
